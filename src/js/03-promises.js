@@ -1,8 +1,48 @@
+const refs = {
+  form: document.querySelector('.form'),
+  delay: document.querySelector('input[name="delay"]'),
+  step: document.querySelector('input[name="step"]'),
+  amount: document.querySelector('input[name="amount"]'),
+  createBtn: document.querySelector('button')
+}
+let timeDelay = 0;
+let delayStep = 0;
+let promisesAmount = 0;
+
+refs.form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  timeDelay = Number(refs.delay.value);
+  delayStep = Number(refs.step.value);
+  promisesAmount = Number(refs.amount.value);
+  for (let i = 1; i <= promisesAmount; i++) {
+    createPromise(i, timeDelay)
+    .then(({position, delay}) => {
+    console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+  })
+  .catch(({position, delay}) => {
+    console.log(`❌ Rejected promise ${position} in ${delay} ms`);
+  });
+  }
+})
+
+
+
 function createPromise(position, delay) {
-  const shouldResolve = Math.random() > 0.3;
+  // console.log(timeDelay)
+  timeDelay += delayStep;
+
+  const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const shouldResolve = Math.random() > 0.3;
   if (shouldResolve) {
+    resolve({position, delay})
     // Fulfill
   } else {
+     reject({position, delay})
     // Reject
   }
+  }, timeDelay)
+  })
+  return promise
 }
+ 
