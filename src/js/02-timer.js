@@ -22,7 +22,7 @@ const options = {
   minuteIncrement: 1,
     onClose(selectedDates) {
         if (selectedDates[0] < options.defaultDate) {
-            window.alert('select normal date')
+            window.alert('select future date')
             return
         }
         refs.startBtn.removeAttribute("disabled");
