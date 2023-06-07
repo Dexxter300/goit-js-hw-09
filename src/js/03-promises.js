@@ -14,6 +14,10 @@ refs.form.addEventListener('submit', (event) => {
   timeDelay = Number(refs.delay.value);
   delayStep = Number(refs.step.value);
   promisesAmount = Number(refs.amount.value);
+  if (timeDelay < 0 || delayStep < 0 || promisesAmount < 0) {
+    alert('pls enter only positive values')
+    return
+  }
   for (let i = 1; i <= promisesAmount; i++) {
     createPromise(i, timeDelay)
     .then(({position, delay}) => {
