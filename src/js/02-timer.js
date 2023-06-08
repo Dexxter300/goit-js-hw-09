@@ -22,6 +22,7 @@ refs.resetBtn.setAttribute('disabled', true)
 
 
 const startTimer = () => {
+  refs.startBtn.setAttribute('disabled', true)
   refs.resetBtn.removeAttribute("disabled");
   refs.inputDate.setAttribute('disabled', true)
   timerId = setInterval(() => {
