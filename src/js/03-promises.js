@@ -18,6 +18,7 @@ refs.form.addEventListener('submit', (event) => {
     alert('pls enter only positive values')
     return
   }
+  refs.form.reset();
   for (let i = 1; i <= promisesAmount; i++) {
     createPromise(i, timeDelay)
     .then(({position, delay}) => {
@@ -26,6 +27,7 @@ refs.form.addEventListener('submit', (event) => {
   .catch(({position, delay}) => {
     console.log(`❌ Rejected promise ${position} in ${delay} ms`);
   });
+  timeDelay += delayStep;
   }
 })
 
@@ -33,7 +35,7 @@ refs.form.addEventListener('submit', (event) => {
 
 function createPromise(position, delay) {
   // console.log(timeDelay)
-  timeDelay += delayStep;
+  // timeDelay += delayStep;
 
   const promise = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -45,7 +47,7 @@ function createPromise(position, delay) {
      reject({position, delay})
     // Reject
   }
-  }, timeDelay)
+  }, delay)
   })
   return promise
 }

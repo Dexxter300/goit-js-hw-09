@@ -36,7 +36,7 @@ const startTimer = () => {
       return
     }
     // console.log(timeLeft)
-    const transformedDate = convertMs(timeLeft);
+    const transformedDate = addLeadingZero(convertMs(timeLeft));
      // console.log(transformedDate)
     refs.days.textContent = transformedDate.days;
     refs.hours.textContent = transformedDate.hours;
@@ -96,3 +96,34 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
+
+function addLeadingZero(value) {
+  let days = value.days;
+  let hours = value.hours;
+  let minutes = value.minutes;
+  let seconds = value.seconds;
+  // console.log(value.days.toString().length)
+  if (value.days.toString().length < 2) {
+    days = value.days.toString().padStart(2, '0');
+  }
+
+
+  if (value.hours.toString().length < 2) {
+   hours = value.hours.toString().padStart(2, '0');
+  }
+
+
+  if (value.minutes.toString().length < 2) {
+    minutes = value.minutes.toString().padStart(2, '0');
+  }
+  
+
+  if (value.seconds.toString().length < 2) {
+    seconds = value.seconds.toString().padStart(2, '0');
+  }
+   
+
+
+
+  return {days, hours, minutes, seconds}
+  }

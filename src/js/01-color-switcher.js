@@ -5,6 +5,7 @@ const refs = {
 }
 let timerId = null;
 let isActive = false;
+refs.stopBtn.setAttribute('disabled', true)
 
 refs.startBtn.addEventListener('click', () => {
     if (isActive) {
@@ -14,12 +15,16 @@ refs.startBtn.addEventListener('click', () => {
     refs.body.style.backgroundColor = getRandomHexColor();
     timerId = setInterval(() => {
         refs.body.style.backgroundColor = getRandomHexColor();
-    },1000)
+    }, 1000)
+    refs.startBtn.setAttribute('disabled', true)
+    refs.stopBtn.removeAttribute("disabled");
 })
 
 refs.stopBtn.addEventListener('click', () => {
     isActive = false;
     clearInterval(timerId);
+    refs.stopBtn.setAttribute('disabled', true)
+    refs.startBtn.removeAttribute("disabled");
 })
 
 function getRandomHexColor() {
